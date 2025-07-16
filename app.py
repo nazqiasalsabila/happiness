@@ -86,7 +86,7 @@ if idx < len(pertanyaan):
     if st.button("Selanjutnya"):
         st.session_state.jawaban_kamu.append(pilihan.split('.')[0])
         st.session_state.index += 1
-        st.experimental_rerun()
+        st.rerun()
 else:
     st.subheader("🎯 Hasil Jawabanmu")
     jawaban = st.session_state.jawaban_kamu
