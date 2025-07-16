@@ -89,7 +89,13 @@ if idx < len(pertanyaan):
         st.session_state.index += 1
         st.rerun()
 else:
-    st.subheader("🎯 Hasil Jawabanmu")
+    st.balloons()
+    st.markdown("""
+        <div style='text-align:center;'>
+            <img src='https://media.giphy.com/media/f9k1tV7HyORcngKF8v/giphy.gif' width='250'>
+            <h2 style='color:#ff69b4;'>Here’s your 💘 Love Compatibility Score 💘</h2>
+        </div>
+    """, unsafe_allow_html=True)
     jawaban = st.session_state.jawaban_kamu
     skor = sum([1 for i in range(len(kunci_jawaban)) if jawaban[i] == kunci_jawaban[i]])
     persentase = int((skor / len(kunci_jawaban)) * 100)
