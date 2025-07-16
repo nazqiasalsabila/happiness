@@ -11,65 +11,65 @@ if "index" not in st.session_state:
 
 st.markdown("""
     <div style='text-align: center;'>
-        <img src='https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif' width='200'>
-        <h1 style='color: #ff4b91; font-size: 42px;'>💘 Jelita ❤️ Madut 💘</h1>
-        <p style='font-size:20px; color: #ff66a3;'>A Sweet & Silly Love Test</p>
-        <p style='font-size:18px; color: #555;'>Answer all the questions and discover your love compatibility 💌</p>
+        <img src='https://media.giphy.com/media/l3vR85PnGsBwu1PFK/giphy.gif' width='220'>
+        <h1 style='color: #ff4b91; font-size: 45px; font-family: "Comic Sans MS", cursive;'>💘 Jelita 💖 Madut 💘</h1>
+        <p style='font-size:22px; color: #ffaaff; font-style: italic;'>A Love Quiz That’s Silly, Sweet, and Full of Heart 💌</p>
+        <p style='font-size:18px; color: #ccc;'>Let’s see how romantically synced you really are! 🌹</p>
     </div>
 """, unsafe_allow_html=True)
 
 if not st.session_state.mulai:
-    if st.button("❤️ Start the Love Test!"):
+    if st.button("💖 Take the Test Now! 💖"):
         st.session_state.mulai = True
     st.stop()
 
 pertanyaan = [
-    ("1. Kalau aku tiba-tiba nangis, kamu bakal...", [
+    ("1. <span style='font-size:22px;'>Kalau aku tiba-tiba nangis, kamu bakal...</span>", [
         "A. Panik dan ikut nangis",
         "B. Langsung peluk",
         "C. Nanya dulu, tapi tetep bingung"
     ]),
-    ("2. Pilihan kencan paling seru menurut kamu:", [
+    ("2. <span style='font-size:22px;'>Pilihan kencan paling seru menurut kamu:</span>", [
         "A. Nonton film/ main game",
         "B. Ngobrol ngobrol di cafe",
         "C. Keliling keliling naik motor"
     ]),
-    ("3. Kalau aku bales chat cuma 'Hmm.', kamu akan...", [
+    ("3. <span style='font-size:22px;'>Kalau aku bales chat cuma 'Hmm.', kamu akan...</span>", [
         "A. iya",
         "B. Bales: 'Oke.'",
         "C. Kirim stiker nyindir"
     ]),
-    ("4. Kalau lagi LDR, hal yang paling kamu butuhin adalah...", [
+    ("4. <span style='font-size:22px;'>Kalau lagi LDR, hal yang paling kamu butuhin adalah...</span>", [
         "A. Video call tiap malam",
         "B. kirim pap tiap waktu",
         "C. long teks romantis"
     ]),
-    ("5. Kamu tuh tipe pasangan yang...", [
+    ("5. <span style='font-size:22px;'>Kamu tuh tipe pasangan yang...</span>", [
         "A. Gampang baper",
         "B. cuek tapi sayang",
         "C. Biasa aja"
     ]),
-    ("6. Kalau kita berantem, kamu bakal...", [
+    ("6. <span style='font-size:22px;'>Kalau kita berantem, kamu bakal...</span>", [
         "A. Minta maaf duluan walau gak salah",
         "B. Ngilang dulu biar adem",
         "C. Kirim stiker lucu buat baikan"
     ]),
-    ("7. Kebiasaan kamu yang paling ngeselin tapi aku kangenin:", [
+    ("7. <span style='font-size:22px;'>Kebiasaan kamu yang paling ngeselin tapi aku kangenin:</span>", [
         "A. Lupa bales padahal udah baca",
         "B. Ngasih kode tapi gak mau jujur langsung",
         "C. Tiba-tiba ngambek terus peluk"
     ]),
-    ("8. Kalau disuruh milih panggilan sayang:", [
+    ("8. <span style='font-size:22px;'>Kalau disuruh milih panggilan sayang:</span>", [
         "A. Bubup",
         "B. Sayang",
         "C. Nama-Nama Lucu"
     ]),
-    ("9. Kalau kita jadi karakter kartun, kamu bakal jadi...", [
+    ("9. <span style='font-size:22px;'>Kalau kita jadi karakter kartun, kamu bakal jadi...</span>", [
         "A. Spongebob: rame dan niat",
         "B. Shinchan: nakal tapi gemes",
         "C. Nobita: lemot tapi setia"
     ]),
-    ("10. Kalau aku ketiduran pas lagi video call...", [
+    ("10. <span style='font-size:22px;'>Kalau aku ketiduran pas lagi video call...</span>", [
         "A. Langsung screenshot wajah kamu yang konyol",
         "B. Bilang besoknya: 'Kamu ngorok tau semalem'",
         "C. Liatin kamu tidur"
@@ -82,7 +82,8 @@ st.subheader("📝 Jawab Pertanyaan Kamu")
 idx = st.session_state.index
 if idx < len(pertanyaan):
     tanya, opsi = pertanyaan[idx]
-    pilihan = st.radio(tanya, opsi, key=f"soal_{idx}")
+    st.markdown(f"<p>{tanya}</p>", unsafe_allow_html=True)
+    pilihan = st.radio("", opsi, key=f"soal_{idx}")
     if st.button("Selanjutnya"):
         st.session_state.jawaban_kamu.append(pilihan.split('.')[0])
         st.session_state.index += 1
