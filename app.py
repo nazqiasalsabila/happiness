@@ -11,7 +11,7 @@ if "index" not in st.session_state:
 
 st.markdown("""
     <div style='text-align: center;'>
-        <img src='https://media.giphy.com/media/l3vR85PnGsBwu1PFK/giphy.gif' width='220'>
+        <img src='https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExd25lMWhuZHEyb3llMmpxb2V5NW9wbzN4cnUwcDZkNHdtbTJlaTdoZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hcUtVbt1y2BvW/giphy.gif' width='220'>
         <h1 style='color: #ff4b91; font-size: 45px; font-family: "Comic Sans MS", cursive;'>💘 Jelita 💖 Madut 💘</h1>
         <p style='font-size:22px; color: #ffaaff; font-style: italic;'>A Love Quiz That’s Silly, Sweet, and Full of Heart 💌</p>
         <p style='font-size:18px; color: #ccc;'>Let’s see how romantically synced you really are! 🌹</p>
@@ -92,7 +92,7 @@ else:
     st.balloons()
     st.markdown("""
         <div style='text-align:center;'>
-            <img src='https://media.giphy.com/media/f9k1tV7HyORcngKF8v/giphy.gif' width='250'>
+            <img src='https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDlsN3R1d243NHRtZXZ4cGlhdjhrZ3FtemxhaGZzMDNxdXRmMmlmYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OF9VWbLZ5xCl2uSMJg/giphy.gif' width='250'>
             <h2 style='color:#ff69b4;'>Here’s your 💘 Love Compatibility Score 💘</h2>
         </div>
     """, unsafe_allow_html=True)
