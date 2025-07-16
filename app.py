@@ -12,16 +12,56 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 pertanyaan = [
-    ("1. Kalau aku tiba-tiba nangis, kamu bakal...", ["A", "B", "C"]),
-    ("2. Pilihan kencan paling seru menurut kamu:", ["A", "B", "C"]),
-    ("3. Kalau aku bales chat cuma 'Hmm.', kamu akan...", ["A", "B", "C"]),
-    ("4. Kalau lagi LDR, hal yang paling kamu butuhin adalah...", ["A", "B", "C"]),
-    ("5. Kamu tuh tipe pasangan yang...", ["A", "B", "C"]),
-    ("6. Kalau kita berantem, kamu bakal...", ["A", "B", "C"]),
-    ("7. Kebiasaan kamu yang paling ngeselin tapi aku kangenin:", ["A", "B", "C"]),
-    ("8. Kalau disuruh milih panggilan sayang:", ["A", "B", "C"]),
-    ("9. Kalau kita jadi karakter kartun, kamu bakal jadi...", ["A", "B", "C"]),
-    ("10. Kalau aku ketiduran pas lagi video call...", ["A", "B", "C"]),
+    ("1. Kalau aku tiba-tiba nangis, kamu bakal...", [
+        "A. Panik dan ikut nangis",
+        "B. Langsung peluk",
+        "C. Nanya dulu, tapi tetep bingung"
+    ]),
+    ("2. Pilihan kencan paling seru menurut kamu:", [
+        "A. Nonton film/ main game",
+        "B. Ngobrol ngobrol di cafe",
+        "C. Keliling keliling naik motor"
+    ]),
+    ("3. Kalau aku bales chat cuma 'Hmm.', kamu akan...", [
+        "A. iya",
+        "B. Bales: 'Oke.'",
+        "C. Kirim stiker nyindir"
+    ]),
+    ("4. Kalau lagi LDR, hal yang paling kamu butuhin adalah...", [
+        "A. Video call tiap malam",
+        "B. kirim pap tiap waktu",
+        "C. long teks romantis"
+    ]),
+    ("5. Kamu tuh tipe pasangan yang...", [
+        "A. Gampang baper",
+        "B. cuek tapi sayang",
+        "C. Santai tapi tiba-tiba manja"
+    ]),
+    ("6. Kalau kita berantem, kamu bakal...", [
+        "A. Minta maaf duluan walau gak salah",
+        "B. Ngilang dulu biar adem",
+        "C. Kirim meme kucing buat baikan"
+    ]),
+    ("7. Kebiasaan kamu yang paling ngeselin tapi aku kangenin:", [
+        "A. Lupa bales padahal udah baca",
+        "B. Ngasih kode tapi gak mau jujur langsung",
+        "C. Tiba-tiba ngambek terus peluk"
+    ]),
+    ("8. Kalau disuruh milih panggilan sayang:", [
+        "A. Bubup",
+        "B. Sayang",
+        "C. Nama makanan lucu (e.g. Bakso, Cimol)"
+    ]),
+    ("9. Kalau kita jadi karakter kartun, kamu bakal jadi...", [
+        "A. Spongebob: rame dan niat",
+        "B. Shinchan: nakal tapi gemes",
+        "C. Nobita: lemot tapi setia"
+    ]),
+    ("10. Kalau aku ketiduran pas lagi video call...", [
+        "A. Langsung screenshot wajah kamu yang konyol",
+        "B. Bilang besoknya: 'Kamu ngorok tau semalem'",
+        "C. Liatin kamu tidur"
+    ])
 ]
 
 st.subheader("🔐 Masukkan Jawaban Kunci (Pasanganmu)")
@@ -48,7 +88,7 @@ if simpan_kunci and jawaban_input:
             tanya, opsi = pertanyaan[index]
             pilihan = st.radio(tanya, opsi, key=f"soal_{index}")
             if st.button("Selanjutnya"):
-                st.session_state.jawaban_kamu.append(pilihan)
+                st.session_state.jawaban_kamu.append(pilihan[0])
                 st.session_state.index += 1
                 st.experimental_rerun()
         else:
