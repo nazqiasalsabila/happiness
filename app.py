@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="Tes Cinta Lucu 💘", layout="centered")
+st.set_page_config(page_title="Tes Cinta Romantis 💘", layout="centered")
 
 if "mulai" not in st.session_state:
     st.session_state.mulai = False
@@ -13,13 +13,13 @@ st.markdown("""
     <div style='text-align: center;'>
         <img src='https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif' width='200'>
         <h1 style='color: #ff4b91; font-size: 42px;'>💘 Jelita ❤️ Madut 💘</h1>
-        <p style='font-size:20px; color: #ff66a3;'>Tes Cinta Lucu & Receh</p>
-        <p style='font-size:18px; color: #555;'>Jawab semua pertanyaannya dan lihat hasil akhir cintamu 😝</p>
+        <p style='font-size:20px; color: #ff66a3;'>A Sweet & Silly Love Test</p>
+        <p style='font-size:18px; color: #555;'>Answer all the questions and discover your love compatibility 💌</p>
     </div>
 """, unsafe_allow_html=True)
 
 if not st.session_state.mulai:
-    if st.button("❤️ Mulai Tes Cinta!"):
+    if st.button("❤️ Start the Love Test!"):
         st.session_state.mulai = True
     st.stop()
 
@@ -47,12 +47,12 @@ pertanyaan = [
     ("5. Kamu tuh tipe pasangan yang...", [
         "A. Gampang baper",
         "B. cuek tapi sayang",
-        "C. Santai tapi tiba-tiba manja"
+        "C. Biasa aja"
     ]),
     ("6. Kalau kita berantem, kamu bakal...", [
         "A. Minta maaf duluan walau gak salah",
         "B. Ngilang dulu biar adem",
-        "C. Kirim meme kucing buat baikan"
+        "C. Kirim stiker lucu buat baikan"
     ]),
     ("7. Kebiasaan kamu yang paling ngeselin tapi aku kangenin:", [
         "A. Lupa bales padahal udah baca",
@@ -62,7 +62,7 @@ pertanyaan = [
     ("8. Kalau disuruh milih panggilan sayang:", [
         "A. Bubup",
         "B. Sayang",
-        "C. Nama makanan lucu (e.g. Bakso, Cimol)"
+        "C. Nama-Nama Lucu"
     ]),
     ("9. Kalau kita jadi karakter kartun, kamu bakal jadi...", [
         "A. Spongebob: rame dan niat",
@@ -108,9 +108,9 @@ else:
         st.session_state.jawaban_kamu = []
         st.session_state.index = 0
         st.session_state.mulai = False
-        st.experimental_rerun()
+        st.rerun()
 
 st.markdown("""
 ---
-<p style='text-align: center; color: gray;'>Game ini buat seru-seruan dan ngetes chemistry bareng pasangan 💞</p>
+<p style='text-align: center; color: gray;'>This game is just for fun and to test your sweet chemistry 💞</p>
 """, unsafe_allow_html=True)
