@@ -88,7 +88,7 @@ if simpan_kunci and jawaban_input:
             tanya, opsi = pertanyaan[index]
             pilihan = st.radio(tanya, opsi, key=f"soal_{index}")
             if st.button("Selanjutnya"):
-                st.session_state.jawaban_kamu.append(pilihan[0])
+                st.session_state.jawaban_kamu.append(pilihan.split('.')[0])
                 st.session_state.index += 1
                 st.experimental_rerun()
         else:
