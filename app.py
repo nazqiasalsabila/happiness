@@ -2,14 +2,26 @@ import streamlit as st
 
 st.set_page_config(page_title="Tes Cinta Lucu 💘", layout="centered")
 
+if "mulai" not in st.session_state:
+    st.session_state.mulai = False
+if "jawaban_kamu" not in st.session_state:
+    st.session_state.jawaban_kamu = []
+if "index" not in st.session_state:
+    st.session_state.index = 0
+
 st.markdown("""
     <div style='text-align: center;'>
         <img src='https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif' width='200'>
         <h1 style='color: #ff4b91; font-size: 42px;'>💘 Jelita ❤️ Madut 💘</h1>
         <p style='font-size:20px; color: #ff66a3;'>Tes Cinta Lucu & Receh</p>
-        <p style='font-size:18px; color: #555;'>Cocokin jawaban kamu sama pasanganmu dan lihat seberapa cocok kalian 😝</p>
+        <p style='font-size:18px; color: #555;'>Jawab semua pertanyaannya dan lihat hasil akhir cintamu 😝</p>
     </div>
 """, unsafe_allow_html=True)
+
+if not st.session_state.mulai:
+    if st.button("❤️ Mulai Tes Cinta!"):
+        st.session_state.mulai = True
+    st.stop()
 
 pertanyaan = [
     ("1. Kalau aku tiba-tiba nangis, kamu bakal...", [
@@ -64,54 +76,39 @@ pertanyaan = [
     ])
 ]
 
-st.subheader("🔐 Masukkan Jawaban Kunci (Pasanganmu)")
-kunci_jawaban = []
-with st.form("input_kunci"):
-    jawaban_input = st.text_input("Masukkan jawaban pasanganmu (contoh: B B B A B A B B C A)")
-    simpan_kunci = st.form_submit_button("✅ Simpan Jawaban Kunci")
+kunci_jawaban = ["B", "B", "B", "A", "B", "A", "B", "B", "C", "A"]
 
-if simpan_kunci and jawaban_input:
-    kunci_jawaban = jawaban_input.upper().split()
+st.subheader("📝 Jawab Pertanyaan Kamu")
+idx = st.session_state.index
+if idx < len(pertanyaan):
+    tanya, opsi = pertanyaan[idx]
+    pilihan = st.radio(tanya, opsi, key=f"soal_{idx}")
+    if st.button("Selanjutnya"):
+        st.session_state.jawaban_kamu.append(pilihan.split('.')[0])
+        st.session_state.index += 1
+        st.experimental_rerun()
+else:
+    st.subheader("🎯 Hasil Jawabanmu")
+    jawaban = st.session_state.jawaban_kamu
+    skor = sum([1 for i in range(len(kunci_jawaban)) if jawaban[i] == kunci_jawaban[i]])
+    persentase = int((skor / len(kunci_jawaban)) * 100)
+    st.write(f"✨ Jawaban yang cocok: {skor} dari {len(kunci_jawaban)}")
+    st.write(f"❤️ Persentase Kecocokan: {persentase}%")
 
-    if len(kunci_jawaban) != len(pertanyaan):
-        st.error("Jumlah jawaban harus sama dengan jumlah pertanyaan!")
+    if persentase == 100:
+        st.success("Kalian bener-bener cocok banget! Soulmate! 💍")
+    elif persentase >= 70:
+        st.info("Cocok banget nih! Udah kayak couple goals 💑")
+    elif persentase >= 50:
+        st.warning("Lumayan cocok, tapi masih bisa disinkronin 💡")
     else:
-        st.success("Jawaban kunci disimpan! Sekarang isi jawaban kamu dan lihat kecocokannya per halaman.")
+        st.error("Wah... butuh lebih banyak ngobrol nih 🤔")
 
-        st.subheader("📝 Jawab Pertanyaan Kamu")
-        if "jawaban_kamu" not in st.session_state:
-            st.session_state.jawaban_kamu = []
-            st.session_state.index = 0
-
-        index = st.session_state.index
-        if index < len(pertanyaan):
-            tanya, opsi = pertanyaan[index]
-            pilihan = st.radio(tanya, opsi, key=f"soal_{index}")
-            if st.button("Selanjutnya"):
-                st.session_state.jawaban_kamu.append(pilihan.split('.')[0])
-                st.session_state.index += 1
-                st.experimental_rerun()
-        else:
-            cocok = sum([1 for j1, j2 in zip(kunci_jawaban, st.session_state.jawaban_kamu) if j1 == j2])
-            persen = cocok / len(pertanyaan) * 100
-
-            st.subheader("🎯 Hasil Kecocokan Kamu")
-            st.write(f"Jawaban yang sama: **{cocok} dari {len(pertanyaan)}** pertanyaan")
-            st.write(f"Persentase kecocokan: **{persen:.0f}%**")
-
-            if persen == 100:
-                st.success("🥰 Kalian kayak kembar pikiran! Langsung aja deh jadi couple goals 💘")
-            elif persen >= 70:
-                st.info("😍 Cocok banget! Tinggal atur jadwal kencan selanjutnya")
-            elif persen >= 50:
-                st.warning("🤔 Lumayan cocok, masih bisa diselaraskan lewat obrolan dan pelukan")
-            else:
-                st.error("😅 Beda frekuensi sih, tapi siapa tahu saling melengkapi?")
-
-            if st.button("🔁 Ulangi Tes"):
-                st.session_state.jawaban_kamu = []
-                st.session_state.index = 0
-                st.experimental_rerun()
+    if st.button("🔁 Ulangi Tes"):
+        st.session_state.jawaban_kamu = []
+        st.session_state.index = 0
+        st.session_state.mulai = False
+        st.experimental_rerun()
 
 st.markdown("""
 ---
